@@ -161,7 +161,7 @@ cmd_chdir(int nargs, char **args)
 		kprintf("Usage: cd directory\n");
 		return EINVAL;
 	}
-
+	DEBUG(DB_VM,"Change directory arguments %s %s\n",args[0],args[1]);
 	return vfs_chdir(args[1]);
 }
 
@@ -262,15 +262,15 @@ cmd_mount(int nargs, char **args)
 	char *fstype;
 	char *device;
 	int i;
-
 	if (nargs != 3) {
 		kprintf("Usage: mount fstype device:\n");
 		return EINVAL;
 	}
+	DEBUG(DB_VM,"device passed to mount %s\n",args[2]);
 
 	fstype = args[1];
 	device = args[2];
-
+	
 	/* Allow (but do not require) colon after device name */
 	if (device[strlen(device)-1]==':') {
 		device[strlen(device)-1] = 0;
@@ -297,6 +297,7 @@ cmd_unmount(int nargs, char **args)
 	}
 
 	device = args[1];
+	DEBUG(DB_VM,"device passed to unmount %s\n",device);
 
 	/* Allow (but do not require) colon after device name */
 	if (device[strlen(device)-1]==':') {
@@ -325,8 +326,10 @@ cmd_bootfs(int nargs, char **args)
 		return EINVAL;
 	}
 
+	
 	device = args[1];
-
+	DEBUG(DB_VM,"device name passed to bootfs %s\n",device);
+	
 	/* Allow (but do not require) colon after device name */
 	if (device[strlen(device)-1]==':') {
 		device[strlen(device)-1] = 0;
