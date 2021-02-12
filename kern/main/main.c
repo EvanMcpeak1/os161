@@ -18,6 +18,10 @@
 #include <version.h>
 
 /*
+ * Evan McPeak
+ */
+
+/*
  * These two pieces of data are maintained by the makefiles and build system.
  * buildconfig is the name of the config file the kernel was configured with.
  * buildversion starts at 1 and is incremented every time you link a kernel. 
@@ -60,7 +64,8 @@ boot(void)
 	 * anything at all. You can make it larger though (it's in
 	 * dev/generic/console.c).
 	 */
-
+	
+	hello();
 	kprintf("\n");
 	kprintf("OS/161 base system version %s\n", BASE_VERSION);
 	kprintf("%s", harvard_copyright);
